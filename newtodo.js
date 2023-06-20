@@ -1,56 +1,67 @@
-// Fetch and display categories
-        fetch('http://localhost:8083/api/categories')
-            .then(response => response.json())
-            .then(categories => {
-                const categoriesList = document.getElementById('categoriesList');
-                categories.forEach(category => {
-                    const listItem = document.createElement('li');
-                    listItem.innerHTML = category.name;
-                    categoriesList.appendChild(listItem);
-                });
-            });
+// detch categories from the API and populate the dropdown
+fetch('http://localhost:8083/api/categories')
+.then(response => response.json())
+.then(categories => {
+  const categoryDropdown = document.getElementById('category');
+  categories.forEach(category => {
+    const option = document.createElement('option');
+    option.value = category.id;
+    option.text = category.name;
+    categoryDropdown.appendChild(option);
+  });
+})
+.catch(error => {
+  console.error('Error fetching categories:', error);
+});
 
-        // fetch and display all ToDos
-        fetch('http://localhost:8083/api/todos')
-            .then(response => response.json())
-            .then(todos => {
-                const todosList = document.getElementById('todosList');
-                todos.forEach(todo => {
-                    const listItem = document.createElement('li');
-                    listItem.innerHTML = todo.description;
-                    todosList.appendChild(listItem);
-                });
-            });
+// Function to add a todo item
+function addTodo() {
+const user = document.getElementById('user').value;
+const category = document.getElementById('category').value;
+const priority = document.getElementById('priority').value;
+const description = document.getElementById('description').value;
+const deadline = document.getElementById('deadline').value;
 
-        // populate user dropdown from API
-        fetch('http://localhost:8083/api/users')
-            .then(response => response.json())
-            .then(users => {
-                const userSelect = document.getElementById('userSelect');
-                users.forEach(user => {
-                    const option = document.createElement('option');
-                    option.value = user.id;
-                    option.innerHTML = user.name;
-                    userSelect.appendChild(option);
-                });
-            });
+const todo = {
+  user,
+  category,
+  priority,
+  description,
+  deadline
+};
 
-        // handle form submission
-        document.getElementById('todoForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+// make a POST request to the API to save the todo item
 
-            const formData = new FormData(this);
+// clear the input fields
+document.getElementById('user').value = '';
+document.getElementById('category').value = '';
+document.getElementById('priority').value = 'Low';
+document.getElementById('description').value = '';
+document.getElementById('deadline').value = '';
 
-            fetch('http://localhost:8083/api/todos', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(todo => {
-                console.log('ToDo added:', todo);
-                this.reset();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        });
+// display the todo item
+displayTodoItem(todo);
+}
+
+// function to display a todo item
+function displayTodoItem(todo) {
+const todoList = document.getElementById('todo-list');
+
+const todoItem = document.createElement('div');
+todoItem.classList.add('todo-item');
+todoItem.innerHTML = `
+  <h3>User: ${todo.user}</h3>
+  <p>Category: ${todo.category}</p>
+  <p>Priority: ${todo.priority}</p>
+  <p>Description: ${todo.description}</p>
+  <p>Deadline: ${todo.deadline}</p>
+`;
+
+todoList.appendChild(todoItem);
+}
+
+// Event listener for form submission
+document.getElementById('todo-form').addEventListener('submit', function(event) {
+event.preventDefault();
+addTodo();
+});
