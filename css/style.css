@@ -1,0 +1,228 @@
+
+
+/* Video + Image container */
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+      
+.video-container {
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    margin: 15px;
+    padding: 0;
+}
+      
+.video-container iframe {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.video-container iframe:nth-child(2) {
+    margin-left: -595px;
+}
+
+/* .video-container img {
+    flex: 0;
+    margin-left: -100px;
+    padding-top: 6px;
+    width: 100%;
+    height: 1444px;
+} */
+
+
+
+#logo {
+    margin-top: 156px;
+}
+
+.about {
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 50px;
+    margin-bottom: 130px;
+  }
+
+
+/* Slide in animation on homepage */
+
+.slide-in-animation {
+    opacity: 0;
+    transform: translateX(-100%);
+    animation: slide-in 1s forwards;
+    font-family:'Courier New', Courier, monospace;
+}
+  
+  @keyframes slide-in {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+}
+  
+
+/* Button color gradient */
+
+.button {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 30px;
+    display: inline-block;
+    outline: 0;
+    border:0;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    color: #000;
+    background: #fff;
+    line-height: 30px;
+    border-radius: 40px;
+    padding: 20px;
+    font-size: 30px;
+    font-weight: 600;
+    box-shadow: rgb(238, 176, 210) -2px -2px 0px 2px, rgb(151, 145, 145) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
+    transition: all 0.2s;
+}
+
+.button:hover{
+    box-shadow: rgb(151, 145, 145) -2px -2px 0px 2px, rgb(238, 176, 210) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
+    transform: scale(1.01);
+    color:rgb(96, 96, 96);
+}
+
+
+/* NavBar */
+
+.navbar {
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: transparent;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.navbar.scrolled {
+    background-color: #fcfcfc;
+    opacity: 88%;
+}
+
+.navbar.scrolled .nav-link {
+    color: rgb(238, 176, 210);
+}
+
+.navbar.scrolled .nav-link:hover {
+    color: black;
+}
+
+.navbar-brand {
+    font-size: 20px;
+    color: #333333;
+}
+
+.nav-link {
+    color: #555;
+}
+
+.nav-link:hover {
+    color: rgb(238, 176, 210);
+}
+
+
+/* NavBar dropdown */
+
+.dropdown-menu {
+    background-color: #f2eeee;
+    border: none;
+}
+      
+.dropdown-menu .dropdown-item {
+    color: #989598;
+}
+      
+.dropdown-menu .dropdown-item:hover {
+    background-color:rgb(250, 226, 240);
+}
+      
+.dropdown-menu .dropdown-item:focus {
+    background-color: rgb(238, 176, 210);
+    color: #ffffff;
+}
+      
+.dropdown-menu .dropdown-item.active {
+    background-color: rgb(238, 176, 210);
+    color: #ffffff;
+}
+      
+.dropdown-menu .dropdown-divider {
+    background-color: rgb(255, 167, 226);
+}
+
+/* Scroll Bar Color */
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: rgb(253, 167, 217);
+}
+    
+::-webkit-scrollbar-thumb {
+    background-color: #f1eeee;
+    border-radius: 60px;
+}
+
+
+.footer {
+    background-color: #f8f8f8;
+    padding: 40px 0;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  .footer-title {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .footer-text {
+    color: #666;
+  }
+  
+  .footer-contact li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-contact i {
+    margin-right: 10px;
+    color: #666;
+  }
+  
+  .footer-social li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .footer-social a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #e2dddd;
+    transition: background-color 0.3s;
+  }
+  
+  .footer-social a:hover {
+    background-color: #f0c3f2;
+  }
+  
+  .footer p {
+    color: #999;
+    margin-top: 30px;
+  }
