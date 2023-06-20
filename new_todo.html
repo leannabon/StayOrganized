@@ -1,43 +1,107 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
-  <title>Title</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CDN CSS v5.3.0 -->
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-
- <!-- External CSS-->
- <link rel="stylesheet" href="BLANK.css">
-
- <!--Jquery Google CDN-->
- <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-
- <!--Jquery UI Google CDN-->
- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
-
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      
+       <!-- Bootstrap CDN CSS v5.3.0 -->
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+      
+       <!-- External CSS-->
+       <link rel="stylesheet" href="BLANK.css">
+      
+       <!--Jquery Google CDN-->
+       <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+      
+       <!--Jquery UI Google CDN-->
+       <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+       <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+      
+      </head>
 </head>
-
 <body>
-  <header>
-    <!-- place navbar here -->
-  </header>
-  <main>
+    <h1>Add New ToDo</h1>
 
-  </main>
-  <footer>
-    <!-- place footer here -->
-  </footer>
-  
-  <!-- Bootstrap CDN JavaScript Libraries (Popper v2.11.7 / Bootstrap v5.3.0) -->
+    <form id="todoForm">
+        <label for="userId">User:</label>
+        <select id="userId" name="userid">
+            <!-- Options will be populated by JavaScript -->
+        </select>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+            <!-- Options will be populated by JavaScript -->
+        </select>
+
+        <label for="priority">Priority:</label>
+        <select id="priority" name="priority">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+
+        <label for="deadline">Deadline:</label>
+        <input type="text" id="deadline" name="deadline" placeholder="YYYY-MM-DD">
+
+        <button type="button" id="addTodo">Add ToDo</button>
+    </form>
+
+    <script>
+    window.onload = function() {
+        // Fetch users and categories when the page loads
+        fetch('api/users')
+            .then(response => response.json())
+            .then(data => populateDropdown('userId', data));
+
+        fetch('api/categories')
+            .then(response => response.json())
+            .then(data => populateDropdown('category', data));
+
+        // Add event listener to the button
+        document.getElementById('addTodo').addEventListener('click', addTodo);
+    }
+
+    function populateDropdown(id, data) {
+        const select = document.getElementById(id);
+
+        data.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.id;
+            option.text = item.name;
+            select.appendChild(option);
+        });
+    }
+
+    function addTodo() {
+        const form = document.getElementById('todoForm');
+        const formData = new FormData(form);
+
+        fetch('api/todos', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // handle response here, e.g. show a success message
+            console.log(data);
+        })
+        .catch(error => {
+            // handle error here, e.g. show an error message
+            console.error(error);
+        });
+    }
+    </script>
+
+<!-- Bootstrap CDN JavaScript Libraries (Popper v2.11.7 / Bootstrap v5.3.0) -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" 
 integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous">
 </script>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" 
 integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous">
@@ -46,6 +110,6 @@ integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7
 
 <!--Javascript -->
 <script src="BLANK.js"></script>
-</body>
 
+</body>
 </html>
