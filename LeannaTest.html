@@ -25,6 +25,7 @@
     </header>
     <main>
       <div class="container p-5">
+        <h1>Pick a user:</h1>
         <div class="dropdown">
           <select name="user" id="userDD">
             <option value="">Pick a user</option>
@@ -34,9 +35,16 @@
 
 
       <div class="container p-5" >
-        <label>DISPLAY TODOs</label>
+        <h1>DISPLAY TO-DOs</h1>
         <div id="displayUserToDos"></div>
       </div>
+      Template To-Do
+      <div class="stickyNote p-5">
+        <h4>${item.deadline}</h4>
+        <p>${item.description}</p>
+        <a name="" id="" class="btn btn-warning" href="todo_details.html?id=xxx" role="button">See Details</a>
+        </div>
+      <br>
     </main>
     <footer>
       <!-- place footer here -->

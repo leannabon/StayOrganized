@@ -20,7 +20,6 @@ async function getUsers(url) {
 // getUsers(userURL);          //console.log user array from localhost API url  //No longer need to call out
 
 
-
 function populateUserDD(url) {
     fetch(url)
         .then(response => {
@@ -56,25 +55,24 @@ function displayUserToDos() {
       }
     })
     .then(data => {
+        console.log(data);
             data.forEach(item =>{
+
                 content += `<div class="stickyNote p-5">
-                <h1>${item.category}</h1>
                 <h4>${item.deadline}</h4>
                 <p>${item.description}</p>
-                <p>Priority: ${item.priority}</p>
-                <input type="checkbox">
-                <label for="completion">Completed?</label>
-              </div>
+                <a name="" id="" class="btn btn-warning" href="todo_details.html?id=${item.id}" target="_blank" role="button">See Details</a>
+                </div>
               <br>`;
+                //   <p>Status: ${item.completed ? '✅' : '❌'}</p>
+                //The innerHTML for the Status uses a conditional ternary operator to check id the key-value pair is true/false and will output based on the latter.
             });
             toDoDisplay.innerHTML = content;
     })
     .catch(error => {
       console.error('An error occurred:', error);
     });
-
 }
 
 
 dropdown.addEventListener('change', displayUserToDos);
-displayUserToDos();
