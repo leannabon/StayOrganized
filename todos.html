@@ -57,23 +57,21 @@
           </div>
         </div>
       </nav>
-        </header>
+  </header>
   <main>
     <div class="container py-5">
       <h1>To Do List</h1>
 
       <div class="form-group my-4">
         <label for="userDropdown">Select User:</label>
-        <select id="userDropdown" class="form-control" onchange="fetchUserTasks()">
+        <select id="userDD" class="form-control">
           <!-- Populated dynamically using JavaScript -->
         </select>
       </div>
 
-      <div id="todoTasks">
+      <div id="displayUserToDos">
         <!-- Display user's ToDo tasks here -->
       </div>
-
-      <button type="button" class="btn btn-primary mt-4" onclick="addNewTask()">Add Task</button>
     </div>
   </main>
   
