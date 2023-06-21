@@ -21,7 +21,7 @@ fetch(`http://localhost:8083/api/todos/${id}`)
     <h4>Deadline: ${data.deadline}</h4>
     <p>Desc: ${data.description}</p>
     <p>Priority: ${data.priority}</p>
-    <a name="" id="markCompletedBTN" class="btn btn-primary" href="#" role="button" onclick="markCompleted(${id})">MARK COMPLETED</a>
+    <a name="" id="markCompletedBTN" class="btn btn-light btn-outline-dark" href="#" role="button" onclick="markCompleted(${id})">MARK COMPLETED</a>
     </div>`;
     detailsDisplay.innerHTML = content;
   })
