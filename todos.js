@@ -61,10 +61,8 @@ function displayUserToDos() {
                 content += `<div class="stickyNote p-5">
                 <h4>${item.deadline}</h4>
                 <p>${item.description}</p>
-
-                <a name="" id="" class="btn btn-light btn-outline-dark" href="todo_details.html?id=${item.id}" target="_blank" role="button">See Details</a>
-
                 <p>Status: ${item.completed ? '✅' : '❌'}</p>
+                <a name="" id="" class="btn btn-light btn-outline-dark" href="todo_details.html?id=${item.id}" target="_blank" role="button">See Details</a>
                 </div>
               <br>`;
                 //   <p>Status: ${item.completed ? '✅' : '❌'}</p>
