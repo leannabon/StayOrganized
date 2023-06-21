@@ -1,0 +1,11 @@
+(Stretch Goal) Marking a ToDo as Completed
+To implement this feature, you should change how you display the ToDo tasks for a user.
+
+✅Rather than displaying each ToDo task in a table with all of the data fields, display only the description and deadline and provide a "See Details" hyperlink to a todo_details.html page. The hyperlink's href would be todo_details.html?id=xxx where xxx is the ToDo's id.
+
+On the todo_details.html, extract the id from the query string and then fetch and display that ToDo in a non-editable form. Include a button on the form that says MARK COMPLETED. If the ToDo's completed property is true, disable the button.
+
+If the user clicks the button, send a PUT message to the endpoint
+http://localhost:8083/api/todos/**id**
+where **id** is the id of the ToDo you want to mark complete. For example:
+http://localhost:8083/api/todos/1 The PUT request body will NOT need any data.
